@@ -10,18 +10,19 @@ const APP_STATIC_RESOURCES = [
   "/icons/wheel.svg",
 ];
 
+// Install event: cache static resources
 self.addEventListener("install", (event) => {
   event.waitUntil(
     (async () => {
-      // Open the specified cache.
+      // Open the specified cache
       const cache = await caches.open(CACHE_NAME);
-      // Add all static files to the cache.
+      // Add all static files to the cache
       cache.addAll(APP_STATIC_RESOURCES);
-    })() // Immediately invoke the async function.
+    })() // Immediately invoke the async function
   );
 });
 
-// delete old caches on activate
+// Activate event: delete old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     (async () => {
@@ -32,7 +33,7 @@ self.addEventListener("activate", (event) => {
         names.map((name) => {
           // Check if it is not the current cache
           if (name !== CACHE_NAME) {
-            // delete it
+            // Delete it
             return caches.delete(name);
           }
         })
@@ -43,27 +44,26 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// On fetch, intercept server requests
-// and respond with cached responses instead of going to network
+// Fetch event: intercept server requests
 self.addEventListener("fetch", (event) => {
-  // As a single page app, direct app to always go to cached home page.
+  // As a single page app, direct app to always go to cached home page
   if (event.request.mode === "navigate") {
     // Looking for a web page
     event.respondWith(caches.match("/"));
     return;
   }
 
-  // For all other requests, go to the cache first, and then the network.
+  // For all other requests, go to the cache first, and then the network
   event.respondWith(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
       const cachedResponse = await cache.match(event.request.url);
       if (cachedResponse) {
-        // Return the cached response if it's available.
+        // Return the cached response if it's available
         return cachedResponse;
       }
-      // If resource isn't in the cache, return a 404.
-      return new Response(null, { status: 404 });
+      // If resource isn't in the cache, return a 404
+      return new Response(null, {status: 404});
     })()
   );
 });
