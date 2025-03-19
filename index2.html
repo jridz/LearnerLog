@@ -6,6 +6,13 @@
     <link rel="stylesheet" href="styles/main2.css"/>
 </head>
 <body>
-<button class="fab">+</button>
+<button class="fab" onclick="document.getElementById('newTripModal').showModal()">
+    <img src="assets/icons/new.svg" width="24" height="24" alt="Icon">
+</button>
+<dialog id="newTripModal">
+    <h2>New Trip</h2>
+    <p>This is a modal dialog.</p>
+    <button onclick="document.getElementById('newTripModal').close()">Close</button>
+</dialog>
 </body>
 </html>
