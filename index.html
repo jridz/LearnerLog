@@ -1,45 +1,57 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width"/>
-    <title>Learner Driving Hours</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnerLog</title>
     <link rel="stylesheet" href="styles/main.css"/>
+    <link rel="icon" href="assets/branding/LearnerLog.svg"/>
     <link rel="manifest" href="manifest.json"/>
-    <link rel="icon" href="assets/icons/icon2.jpg"/>
-
-    <!--Register the app's service worker.-->
-    <script>
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("serviceWorker.js");
-      }
-    </script>
 </head>
 <body>
-<h1>Driving Hours</h1>
-<form>
-    <fieldset>
-        <legend>Enter the date and start & end times</legend>
-        <p>
-            <label for="date">Date</label>
-            <input type="date" id="date" required/>
-        </p>
-        <div style="margin-left:30px;">
+<main>
+    <h1 class="title">LearnerLog</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua.</p>
+    <div id="past-sessions"></div>
+</main>
+<button class="fab" onclick="document.getElementById('newTripModal').showModal()">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+        <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
+    </svg>
+</button>
+<dialog id="newTripModal">
+    <h2>New Trip</h2>
+    <p>Enter the date and start & end times</p>
+    <form id="newTripForm">
+        <fieldset>
             <p>
-                <label for="start-time">Start time</label>
-                <input type="time" id="start-time" required/>
+                <label for="date">Date</label>
+                <input type="date" id="date" required/>
             </p>
             <p>
-                <label for="end-time">End time</label>
-                <input type="time" id="end-time" required/>
+                <label for="startTime">Start time</label>
+                <input type="time" id="startTime" required/>
             </p>
-        </div>
-    </fieldset>
-    <p>
-        <button type="submit">Add Session</button>
-    </p>
-</form>
-<section id="past-sessions"></section>
-<script src="scripts/app.js" defer></script>
+            <p>
+                <label for="endTime">End time</label>
+                <input type="time" id="endTime" required/>
+            </p>
+        </fieldset>
+        <button type="submit">
+            <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#e3e3e3">
+                <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
+            </svg>
+            Add Session
+        </button>
+    </form>
+    <button onclick="document.getElementById('newTripModal').close()" class="closeButton">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+        </svg>
+    </button>
+</dialog>
 </body>
+<script type="module" src="scripts/app.js"></script>
+<script src="scripts/serviceWorker.js"></script>
 </html>

@@ -1,4 +1,4 @@
-import {newTripForm} from "../app2.js";
+import {newTripForm} from "../app.js";
 
 // Check if the date is invalid
 export function checkDateInvalid(date) {

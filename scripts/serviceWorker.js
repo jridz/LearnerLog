@@ -3,9 +3,9 @@ const CACHE_NAME = `learner-hours-${VERSION}`;
 
 const APP_STATIC_RESOURCES = [
   "/",
-  "/index.html",
-  "/main.css",
-  "/app.js",
+  "/old-index.html",
+  "/old-main.css",
+  "/old-app.js",
   "/manifest.json",
   "/icons/wheel.svg",
 ];
