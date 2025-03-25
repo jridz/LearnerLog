@@ -1,9 +1,10 @@
 import {formatTime} from "./functions/formatTime.js";
 import {formatDate} from "./functions/formatDate.js";
-import {checkDateInvalid} from "./functions/checkDateInvalid.js";
-import {checkTimesInvalid} from "./functions/checkTimesInvalid.js";
+import {dateValid} from "./functions/dateValid.js";
+import {timeValid} from "./functions/timeValid.js";
 import {storeNewSession} from "./functions/storeNewSession.js";
 import {getAllStoredSessions} from "./functions/getAllStoredSessions.js";
+import {resetErrors} from "./functions/resetErrors.js";
 
 // Create constants for the form and the form controls
 export const STORAGE_KEY = "learnerlog";
@@ -18,19 +19,22 @@ newTripForm.addEventListener("submit", (event) => {
   // Prevent the form from submitting to the server since everything is client-side
   event.preventDefault();
 
+  // Reset any previous errors
+  resetErrors();
+
   // Get the start and end dates from the form
   const date = dateInput.value;
   const startTime = startTimeInput.value;
   const endTime = endTimeInput.value;
 
   // Check if the date is invalid
-  if (checkDateInvalid(date)) {
+  if (!dateValid(date)) {
     // If the date is invalid, exit
     return;
   }
 
   // Check if the times are invalid
-  if (checkTimesInvalid(startTime, endTime)) {
+  if (!timeValid(startTime, endTime)) {
     // If the times are invalid, exit
     return;
   }
@@ -58,9 +62,6 @@ function renderPastSessions() {
   // Clear the list of past sessions, since we're going to re-render it
   pastSessionContainer.textContent = "";
 
-  const pastSessionHeader = document.createElement("h2");
-  pastSessionHeader.textContent = "Past sessions";
-
   const pastSessionList = document.createElement("ul");
 
   // Loop over all sessions and render them
@@ -71,12 +72,12 @@ function renderPastSessions() {
     )} to ${formatTime(session.endTime)}`;
     pastSessionList.appendChild(sessionEl);
   });
-
-  pastSessionContainer.appendChild(pastSessionHeader);
+  
   pastSessionContainer.appendChild(pastSessionList);
 }
 
 // Initial render of past sessions
 window.onload = () => {
   renderPastSessions()
+  resetErrors()
 }

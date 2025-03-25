@@ -101,6 +101,19 @@ dialog {
             }
         }
 
+        .modalInputError {
+            display: flex;
+            align-items: center;
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+
+            svg {
+                fill: red;
+                margin-right: 5px;
+            }
+        }
+
         button {
             display: flex;
             margin-top: 10px;
@@ -127,6 +140,35 @@ dialog h2 {
 
 dialog::backdrop {
     background: rgba(0, 0, 0, 0.5);
+}
+
+#past-sessions {
+    ul {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        padding: 0;
+
+        :first-child {
+            /*  Round corners of first element  */
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        :last-child {
+            /*  Round corners of last element  */
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        li {
+            display: block;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-bottom: 0.5px solid #ddd;
+            background-color: #fff;
+        }
+    }
 }
 
 /* Mobile */
