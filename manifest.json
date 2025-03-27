@@ -1,20 +1,15 @@
 {
-  "name": "LearnerHours: Learner Driver app",
-  "short_name": "LH",
-  "description": "Securely and confidentially record and keep track of the hours you drive on your Ls. Enter the date and start and end times of your driving sessions, saving your private data to your browser on your device, without sharing it with the rest of the world.",
+  "name": "LearnerLog",
+  "short_name": "LL",
+  "description": "Keep track of the hours you drive on your Ls.",
   "start_url": "/",
-  "theme_color": "#eeffee",
-  "background_color": "#eeffee",
+  "theme_color": "#FAD522",
+  "background_color": "#FAD522",
   "display": "standalone",
   "icons": [
     {
-      "src": "Icons/Icon1.png",
+      "src": "assets/branding/LearnerLog.svg",
       "sizes": "48x48"
-    },
-    {
-      "src": "Icons/icon2.jpg",
-      "sizes": "72x72 96x96",
-      "purpose": "maskable"
     }
   ]
 }
