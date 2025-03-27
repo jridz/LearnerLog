@@ -159,13 +159,14 @@ dialog::backdrop {
             /*  Round corners of last element  */
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
+            border-bottom: 1px solid #ddd;
         }
 
         li {
             display: block;
             padding: 10px;
             border: 1px solid #ddd;
-            border-bottom: 0.5px solid #ddd;
+            border-bottom: none;
             background-color: #fff;
         }
     }
