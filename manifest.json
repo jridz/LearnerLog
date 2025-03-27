@@ -2,7 +2,7 @@
   "name": "LearnerLog",
   "short_name": "LL",
   "description": "Keep track of the hours you drive on your Ls.",
-  "start_url": "/index.html",
+  "start_url": "/LearnerLog/",
   "theme_color": "#FAD522",
   "background_color": "#FAD522",
   "display": "standalone",
