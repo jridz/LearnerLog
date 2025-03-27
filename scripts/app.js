@@ -14,6 +14,20 @@ const startTimeInput = document.getElementById("startTime");
 const endTimeInput = document.getElementById("endTime");
 const pastSessionContainer = document.getElementById("past-sessions");
 
+function toggleNav() {
+  const nav = document.getElementById("navMenu");
+  if (nav.style.display === "block") {
+    nav.style.display = "none";
+    // document.body.removeEventListener("click", toggleNav);
+  } else {
+    nav.style.display = "block";
+    // document.body.addEventListener("click", toggleNav);
+  }
+}
+
+// Listen for clicks on the hamburger icon
+document.getElementById("navToggle").addEventListener("click", toggleNav);
+
 // Listen to form submissions
 newTripForm.addEventListener("submit", (event) => {
   // Prevent the form from submitting to the server since everything is client-side
@@ -72,7 +86,7 @@ function renderPastSessions() {
     )} to ${formatTime(session.endTime)}`;
     pastSessionList.appendChild(sessionEl);
   });
-  
+
   pastSessionContainer.appendChild(pastSessionList);
 }
 
