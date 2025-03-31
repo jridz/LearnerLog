@@ -42,9 +42,6 @@ body, button {
 
 #navMenu {
     display: none;
-}
-
-#navMenu ul {
     position: fixed;
     top: 0;
     left: 0;
@@ -52,6 +49,18 @@ body, button {
     background-color: white;
     width: 50%;
     max-width: 400px;
+    padding: 0;
+    margin: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#navMenu.visible {
+    display: block;
+}
+
+#navMenu ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -74,10 +83,6 @@ body, button {
 #navMenu ul li a svg {
     margin-right: 10px;
     fill: black;
-}
-
-#navMenu.visible {
-    display: block;
 }
 
 main {
