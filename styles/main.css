@@ -5,75 +5,79 @@ body, button {
 }
 
 #header {
-    margin: 16px 16px 0 16px;
+    margin: 16px;
     display: flex;
-    justify-content: flex-start; /* Align items to the start */
+    justify-content: flex-start;
+}
 
-    .logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-grow: 1;
+#header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
 
-        img {
-            height: 40px;
-            width: auto;
-            margin-right: 10px;
-        }
+#header .logo img {
+    height: 40px;
+    width: auto;
+    margin-right: 10px;
+}
 
-        h1 {
-            margin: 0;
-            text-align: center;
-            font-weight: 900;
-            font-style: italic;
-        }
-    }
+#header .logo h1 {
+    margin: 0;
+    text-align: center;
+    font-weight: 900;
+    font-style: italic;
+}
 
-    #navToggle {
-        height: 24px;
-        width: auto;
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 24px;
-        color: black;
-    }
+#navToggle {
+    height: 24px;
+    width: auto;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: black;
 }
 
 #navMenu {
     display: none;
+}
 
-    ul {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100%;
-        background-color: white;
-        width: 50%;
-        max-width: 400px;
-        list-style: none;
-        padding: 0;
-        margin: 0;
+#navMenu ul {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: white;
+    width: 50%;
+    max-width: 400px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-        li {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-            cursor: pointer;
+#navMenu ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
 
-            a {
-                display: flex;
-                align-items: center;
-                text-decoration: none;
-                color: black;
-                font-size: 20px;
+#navMenu ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
 
-                svg {
-                    margin-right: 10px;
-                    fill: black;
-                }
-            }
-        }
-    }
+#navMenu ul li a svg {
+    margin-right: 10px;
+    fill: black;
+}
+
+#navMenu.visible {
+    display: block;
 }
 
 main {
@@ -111,10 +115,10 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     font-size: 24px;
     cursor: pointer;
+}
 
-    svg {
-        fill: black;
-    }
+.fab svg {
+    fill: black;
 }
 
 .fab:hover {
@@ -127,75 +131,73 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 10px;
     width: 300px;
+}
 
-    p {
-        margin: 0;
-        padding: 0;
-    }
+#newTripModal p {
+    margin: 0;
+    padding: 0;
+}
 
-    .closeButton {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 24px;
-        color: black;
-    }
+#newTripModal .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: black;
+}
 
-    form {
-        fieldset {
-            border: none;
-            padding: 0;
-            margin: 0;
+#newTripModal form fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
 
-            label {
-                display: block;
-                margin-top: 10px;
-                font-size: 14px;
-                font-weight: 600;
-            }
+#newTripModal form label {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
 
-            input {
-                padding: 5px;
-                margin-top: 5px;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-            }
-        }
+#newTripModal form input {
+    padding: 5px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
 
-        .modalInputError {
-            display: flex;
-            align-items: center;
-            color: red;
-            font-size: 12px;
-            margin-top: 5px;
+#newTripModal .modalInputError {
+    display: flex;
+    align-items: center;
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
 
-            svg {
-                fill: red;
-                margin-right: 5px;
-            }
-        }
+#newTripModal .modalInputError svg {
+    fill: red;
+    margin-right: 5px;
+}
 
-        button {
-            display: flex;
-            margin-top: 10px;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            background-color: #fad522;
-            color: black;
-            cursor: pointer;
-            font-size: 16px;
-            align-items: center;
+#newTripModal form button {
+    display: flex;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fad522;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+    align-items: center;
+}
 
-            svg {
-                fill: black;
-                margin-right: 5px;
-            }
-        }
-    }
+#newTripModal form button svg {
+    fill: black;
+    margin-right: 5px;
 }
 
 dialog h2 {
@@ -206,34 +208,30 @@ dialog::backdrop {
     background: rgba(0, 0, 0, 0.5);
 }
 
-#past-sessions {
-    ul {
-        display: flex;
-        flex-direction: column;
-        list-style: none;
-        padding: 0;
+#past-sessions ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+}
 
-        :first-child {
-            /*  Round corners of first element  */
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-        }
+#past-sessions ul :first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
 
-        :last-child {
-            /*  Round corners of last element  */
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
-            border-bottom: 1px solid #ddd;
-        }
+#past-sessions ul :last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom: 1px solid #ddd;
+}
 
-        li {
-            display: block;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-bottom: none;
-            background-color: #fff;
-        }
-    }
+#past-sessions ul li {
+    display: block;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-bottom: none;
+    background-color: #fff;
 }
 
 /* Mobile */
