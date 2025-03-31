@@ -1,17 +1,16 @@
-import {formatTime} from "./functions/formatTime.js";
-import {formatDate} from "./functions/formatDate.js";
 import {dateValid} from "./functions/dateValid.js";
 import {timeValid} from "./functions/timeValid.js";
 import {storeNewSession} from "./functions/storeNewSession.js";
 import {getAllStoredSessions} from "./functions/getAllStoredSessions.js";
 import {resetErrors} from "./functions/resetErrors.js";
+import {createPastSessionItem} from "./components/pastSessionItem.js";
 
 export const STORAGE_KEY = "learnerlog";
 const newTripForm = document.getElementById("newTripForm");
 const dateInput = document.getElementById("date");
 const startTimeInput = document.getElementById("startTime");
 const endTimeInput = document.getElementById("endTime");
-const pastSessionContainer = document.getElementById("past-sessions");
+export const pastSessionList = document.getElementById("pastSessionsList");
 
 function toggleNav() {
   const nav = document.getElementById("navMenu");
@@ -38,6 +37,7 @@ newTripForm.addEventListener("submit", (event) => {
   const endTime = endTimeInput.value;
   const startLocation = document.getElementById("startLocation").value;
   const endLocation = document.getElementById("endLocation").value
+  const duration = (endTimeInput.valueAsNumber - startTimeInput.valueAsNumber);
 
   if (!dateValid(date)) {
     return;
@@ -47,7 +47,7 @@ newTripForm.addEventListener("submit", (event) => {
     return;
   }
 
-  storeNewSession(date, startTime, endTime, startLocation, endLocation);
+  storeNewSession(date, startTime, endTime, duration, startLocation, endLocation);
   renderPastSessions();
   newTripForm.reset();
 });
@@ -59,16 +59,9 @@ function renderPastSessions() {
     return;
   }
 
-  pastSessionContainer.textContent = "";
-  const pastSessionList = document.createElement("ul");
-
   sessions.forEach((session) => {
-    const sessionEl = document.createElement("li");
-    sessionEl.textContent = `${formatDate(session.date)} from ${formatTime(session.startTime)} to ${formatTime(session.endTime)}`;
-    pastSessionList.appendChild(sessionEl);
+    createPastSessionItem(session);
   });
-
-  pastSessionContainer.appendChild(pastSessionList);
 }
 
 window.onload = () => {

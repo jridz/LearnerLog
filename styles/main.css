@@ -96,10 +96,6 @@ main {
     box-sizing: border-box;
 }
 
-main h2 {
-    margin-bottom: 0;
-}
-
 body {
     margin: 0;
     padding: 0;
@@ -217,30 +213,47 @@ dialog::backdrop {
     background: rgba(0, 0, 0, 0.5);
 }
 
-#past-sessions ul {
+#pastSessionsList {
     display: flex;
     flex-direction: column;
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
-#past-sessions ul :first-child {
+#pastSessionsList li:first-child {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
 
-#past-sessions ul :last-child {
+#pastSessionsList li:last-child {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     border-bottom: 1px solid #ddd;
 }
 
-#past-sessions ul li {
+#pastSessionsList .sessionItemContainer {
     display: block;
-    padding: 10px;
     border: 1px solid #ddd;
     border-bottom: none;
     background-color: #fff;
+}
+
+#pastSessionsList .sessionItemContainer p {
+    margin: 16px;
+}
+
+#pastSessionsList .sessionItemContainer .sessionInfoAbove {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+#pastSessionsList .sessionItemContainer .sessionInfoBelow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Mobile */

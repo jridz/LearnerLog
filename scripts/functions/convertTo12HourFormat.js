@@ -1,5 +1,5 @@
 // Format the time string from 24-hour to 12-hour format
-export function formatTime(timeString) {
+export function convertTo12HourFormat(timeString) {
   // Separate hour and minutes from timeString
   const [hour, minute] = timeString.split(":");
 
