@@ -36,6 +36,8 @@ newTripForm.addEventListener("submit", (event) => {
   const date = dateInput.value;
   const startTime = startTimeInput.value;
   const endTime = endTimeInput.value;
+  const startLocation = document.getElementById("startLocation").value;
+  const endLocation = document.getElementById("endLocation").value
 
   if (!dateValid(date)) {
     return;
@@ -45,7 +47,7 @@ newTripForm.addEventListener("submit", (event) => {
     return;
   }
 
-  storeNewSession(date, startTime, endTime);
+  storeNewSession(date, startTime, endTime, startLocation, endLocation);
   renderPastSessions();
   newTripForm.reset();
 });
