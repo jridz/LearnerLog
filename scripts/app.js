@@ -53,6 +53,8 @@ newTripForm.addEventListener("submit", (event) => {
 });
 
 function renderPastSessions() {
+  pastSessionList.innerHTML = "";
+
   const sessions = getAllStoredSessions();
 
   if (sessions.length === 0) {
