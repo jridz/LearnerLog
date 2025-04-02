@@ -1,13 +1,24 @@
-const VERSION = "v1";
+const VERSION = "v2";
 const CACHE_NAME = `learner-hours-${VERSION}`;
 
 const APP_STATIC_RESOURCES = [
-  "/",
-  "/old-index.html",
-  "/old-main.css",
-  "/old-app.js",
-  "/manifest.json",
-  "/icons/wheel.svg",
+  "/index.html",
+  "/styles/main.css",
+  "/scripts/app.js",
+  // Functions
+  "/scripts/functions/convertTo12HourFormat.js",
+  "/scripts/functions/convertToHoursMinutes.js",
+  "/scripts/functions/dateValid.js",
+  "/scripts/functions/formatDate.js",
+  "/scripts/functions/getAllStoredSessions.js",
+  "/scripts/functions/resetErrors.js",
+  "/scripts/functions/storeEditedSession.js",
+  "/scripts/functions/storeNewSession.js",
+  "/scripts/functions/timeValid.js",
+  // Components
+  "/scripts/components/editSessionModal.js",
+  "/scripts/components/pastSessionItem.js",
+  "/scripts/components/toast.js",
 ];
 
 // Install event: cache static resources
