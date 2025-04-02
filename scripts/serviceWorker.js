@@ -2,23 +2,23 @@ const VERSION = "v2";
 const CACHE_NAME = `learner-hours-${VERSION}`;
 
 const APP_STATIC_RESOURCES = [
-  "/index.html",
-  "/styles/main.css",
-  "/scripts/app.js",
+  "/LearnerLog/index.html",
+  "/LearnerLog/styles/main.css",
+  "/LearnerLog/scripts/app.js",
   // Functions
-  "/scripts/functions/convertTo12HourFormat.js",
-  "/scripts/functions/convertToHoursMinutes.js",
-  "/scripts/functions/dateValid.js",
-  "/scripts/functions/formatDate.js",
-  "/scripts/functions/getAllStoredSessions.js",
-  "/scripts/functions/resetErrors.js",
-  "/scripts/functions/storeEditedSession.js",
-  "/scripts/functions/storeNewSession.js",
-  "/scripts/functions/timeValid.js",
+  "/LearnerLog/scripts/functions/convertTo12HourFormat.js",
+  "/LearnerLog/scripts/functions/convertToHoursMinutes.js",
+  "/LearnerLog/scripts/functions/dateValid.js",
+  "/LearnerLog/scripts/functions/formatDate.js",
+  "/LearnerLog/scripts/functions/getAllStoredSessions.js",
+  "/LearnerLog/scripts/functions/resetErrors.js",
+  "/LearnerLog/scripts/functions/storeEditedSession.js",
+  "/LearnerLog/scripts/functions/storeNewSession.js",
+  "/LearnerLog/scripts/functions/timeValid.js",
   // Components
-  "/scripts/components/editSessionModal.js",
-  "/scripts/components/pastSessionItem.js",
-  "/scripts/components/toast.js",
+  "/LearnerLog/scripts/components/editSessionModal.js",
+  "/LearnerLog/scripts/components/pastSessionItem.js",
+  "/LearnerLog/scripts/components/toast.js",
 ];
 
 // Install event: cache static resources
