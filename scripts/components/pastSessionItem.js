@@ -2,39 +2,46 @@ import {formatDate} from "../functions/formatDate.js";
 import {convertTo12HourFormat} from "../functions/convertTo12HourFormat.js";
 import {convertToHoursMinutes} from "../functions/convertToHoursMinutes.js";
 import {pastSessionList} from "../app.js";
+import {openEditSessionModal} from "./editSessionModal.js";
 
-export function createPastSessionItem(session) {
+export function createPastSessionItem(session, index) {
   const sessionItemContainer = document.createElement("li");
   sessionItemContainer.classList.add("sessionItemContainer");
 
-  const sessionInfoAbove = document.createElement("div");
-  const sessionInfoBelow = document.createElement("div");
+  const sessionInfo = document.createElement("div");
 
-  sessionInfoAbove.classList.add("sessionInfoAbove");
-  sessionInfoBelow.classList.add("sessionInfoBelow");
+  sessionInfo.classList.add("sessionInfo");
 
   const sessionDuration = document.createElement("p");
   sessionDuration.textContent = `${convertToHoursMinutes(session.duration)}`;
 
-  const sessionStartLocation = document.createElement("p");
-  sessionStartLocation.textContent = session.startLocation;
-  const sessionEndLocation = document.createElement("p");
-  sessionEndLocation.textContent = session.endLocation;
+  const sessionLocations = document.createElement("p");
+  sessionLocations.textContent = `${session.startLocation} -> ${session.endLocation}`;
 
-  sessionInfoAbove.appendChild(sessionDuration);
-  sessionInfoAbove.appendChild(sessionStartLocation);
-  sessionInfoAbove.appendChild(sessionEndLocation);
+  sessionInfo.appendChild(sessionDuration);
+  sessionInfo.appendChild(sessionLocations);
 
   const sessionDate = document.createElement("p");
   sessionDate.textContent = formatDate(session.date);
   const sessionTimes = document.createElement("p");
   sessionTimes.textContent = `from ${convertTo12HourFormat(session.startTime)} to ${convertTo12HourFormat(session.endTime)}`;
 
-  sessionInfoBelow.appendChild(sessionDate);
-  sessionInfoBelow.appendChild(sessionTimes);
+  const editButton = document.createElement("button");
+  editButton.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\" viewBox=\"0 -960 960 960\" width=\"24px\" fill=\"#e3e3e3\">" +
+    "<path d=\"M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z\"/>" +
+    "</svg>";
+  editButton.classList.add("sessionEditButton");
+  editButton.onclick = () => {
+    openEditSessionModal(index)
+  }
 
-  sessionItemContainer.appendChild(sessionInfoAbove);
-  sessionItemContainer.appendChild(sessionInfoBelow);
+  sessionInfo.appendChild(sessionDate);
+  sessionInfo.appendChild(sessionTimes);
+  sessionInfo.appendChild(editButton);
+
+  sessionItemContainer.dataset.index = index;
+
+  sessionItemContainer.appendChild(sessionInfo);
 
   pastSessionList.appendChild(sessionItemContainer);
 }

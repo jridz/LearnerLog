@@ -1,10 +1,18 @@
-export const dateError = document.getElementById('dateError');
-export const startTimeError = document.getElementById('startTimeError');
-export const endTimeError = document.getElementById('endTimeError');
+export const newSessionDateError = document.getElementById('newSessionDateError');
+export const newSessionStartTimeError = document.getElementById('newSessionStartTimeError');
+export const newSessionEndTimeError = document.getElementById('newSessionEndTimeError');
 
-// Check if the date is invalid
+export const editSessionDateError = document.getElementById('editSessionDateError');
+export const editSessionStartTimeError = document.getElementById('editSessionStartTimeError');
+export const editSessionEndTimeError = document.getElementById('editSessionEndTimeError');
+
+// Hide all the errors
 export function resetErrors() {
-  dateError.style.display = "none";
-  startTimeError.style.display = "none";
-  endTimeError.style.display = "none";
+  newSessionDateError.style.display = "none";
+  newSessionStartTimeError.style.display = "none";
+  newSessionEndTimeError.style.display = "none";
+
+  editSessionDateError.style.display = "none";
+  editSessionStartTimeError.style.display = "none";
+  editSessionEndTimeError.style.display = "none";
 }

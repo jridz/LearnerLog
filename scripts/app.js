@@ -1,15 +1,16 @@
 import {dateValid} from "./functions/dateValid.js";
 import {timeValid} from "./functions/timeValid.js";
 import {storeNewSession} from "./functions/storeNewSession.js";
+import {storeEditedSession} from "./functions/storeEditedSession.js";
 import {getAllStoredSessions} from "./functions/getAllStoredSessions.js";
 import {resetErrors} from "./functions/resetErrors.js";
 import {createPastSessionItem} from "./components/pastSessionItem.js";
 
 export const STORAGE_KEY = "learnerlog";
-const newTripForm = document.getElementById("newTripForm");
-const dateInput = document.getElementById("date");
-const startTimeInput = document.getElementById("startTime");
-const endTimeInput = document.getElementById("endTime");
+const newSessionForm = document.getElementById("newSessionForm");
+const editSessionForm = document.getElementById("editSessionForm");
+const newSessionModal = document.getElementById("newSessionModal");
+const editSessionModal = document.getElementById("editSessionModal");
 export const pastSessionList = document.getElementById("pastSessionsList");
 
 function toggleNav() {
@@ -28,28 +29,58 @@ document.addEventListener("click", (event) => {
 
 document.getElementById("navToggle").addEventListener("click", toggleNav);
 
-newTripForm.addEventListener("submit", (event) => {
+newSessionForm.addEventListener("submit", (event) => {
   event.preventDefault();
   resetErrors();
 
-  const date = dateInput.value;
-  const startTime = startTimeInput.value;
-  const endTime = endTimeInput.value;
-  const startLocation = document.getElementById("startLocation").value;
-  const endLocation = document.getElementById("endLocation").value
-  const duration = (endTimeInput.valueAsNumber - startTimeInput.valueAsNumber);
+  const date = document.getElementById("newSessionDateInput").value;
+  const startTime = document.getElementById("newSessionStartTimeInput");
+  const endTime = document.getElementById("newSessionEndTimeInput");
+  const startLocation = document.getElementById("newSessionStartLocation").value;
+  const endLocation = document.getElementById("newSessionEndLocation").value
+
+  const duration = (endTime.valueAsNumber - startTime.valueAsNumber);
 
   if (!dateValid(date)) {
     return;
   }
 
-  if (!timeValid(startTime, endTime)) {
+  if (!timeValid(startTime.value, endTime.value)) {
     return;
   }
 
-  storeNewSession(date, startTime, endTime, duration, startLocation, endLocation);
+  storeNewSession(date, startTime.value, endTime.value, duration, startLocation, endLocation);
   renderPastSessions();
-  newTripForm.reset();
+  newSessionForm.reset();
+  newSessionModal.close();
+});
+
+editSessionForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  resetErrors();
+
+  const index = document.getElementById("editSessionModal").dataset.index;
+
+  const date = document.getElementById("editSessionDateInput").value;
+  const startTime = document.getElementById("editSessionStartTimeInput");
+  const endTime = document.getElementById("editSessionEndTimeInput");
+  const startLocation = document.getElementById("editSessionStartLocation").value;
+  const endLocation = document.getElementById("editSessionEndLocation").value
+
+  const duration = (endTime.valueAsNumber - startTime.valueAsNumber);
+
+  if (!dateValid(date)) {
+    return;
+  }
+
+  if (!timeValid(startTime.value, endTime.value)) {
+    return;
+  }
+
+  storeEditedSession(index, date, startTime.value, endTime.value, duration, startLocation, endLocation);
+  renderPastSessions();
+  editSessionForm.reset();
+  editSessionModal.close();
 });
 
 function renderPastSessions() {
@@ -61,8 +92,10 @@ function renderPastSessions() {
     return;
   }
 
+  let index = 0;
   sessions.forEach((session) => {
-    createPastSessionItem(session);
+    createPastSessionItem(session, index);
+    index++;
   });
 }
 

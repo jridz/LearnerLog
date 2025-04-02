@@ -130,7 +130,7 @@ body {
     filter: brightness(90%);
 }
 
-#newTripModal {
+.sessionModal {
     border: none;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -138,12 +138,12 @@ body {
     width: 300px;
 }
 
-#newTripModal p {
+.sessionModal p {
     margin: 0;
     padding: 0;
 }
 
-#newTripModal .closeButton {
+.sessionModal .closeButton {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -154,27 +154,27 @@ body {
     color: black;
 }
 
-#newTripModal form fieldset {
+.sessionModal form fieldset {
     border: none;
     padding: 0;
     margin: 0;
 }
 
-#newTripModal form label {
+.sessionModal form label {
     display: block;
     margin-top: 10px;
     font-size: 14px;
     font-weight: 600;
 }
 
-#newTripModal form input {
+.sessionModal form input {
     padding: 5px;
     margin-top: 5px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
 
-#newTripModal .modalInputError {
+.sessionModal .modalInputError {
     display: flex;
     align-items: center;
     color: red;
@@ -182,12 +182,12 @@ body {
     margin-top: 5px;
 }
 
-#newTripModal .modalInputError svg {
+.sessionModal .modalInputError svg {
     fill: red;
     margin-right: 5px;
 }
 
-#newTripModal form button {
+.sessionModal form button {
     display: flex;
     margin-top: 10px;
     padding: 5px 10px;
@@ -200,7 +200,7 @@ body {
     align-items: center;
 }
 
-#newTripModal form button svg {
+.sessionModal form button svg {
     fill: black;
     margin-right: 5px;
 }
@@ -243,17 +243,25 @@ dialog::backdrop {
     margin: 16px;
 }
 
-#pastSessionsList .sessionItemContainer .sessionInfoAbove {
+#pastSessionsList .sessionItemContainer .sessionInfo {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ddd;
 }
 
-#pastSessionsList .sessionItemContainer .sessionInfoBelow {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+#pastSessionsList .sessionItemContainer .sessionInfo .sessionEditButton {
+    height: 24px;
+    width: auto;
+    margin: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: black;
+}
+
+#pastSessionsList .sessionItemContainer .sessionInfo .sessionEditButton svg {
+    fill: black;
 }
 
 /* Mobile */
