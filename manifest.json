@@ -1,6 +1,6 @@
 {
   "name": "LearnerLog",
-  "short_name": "LL",
+  "short_name": "LearnerLog",
   "description": "Keep track of the hours you drive on your Ls.",
   "start_url": "/LearnerLog/",
   "theme_color": "#FAD522",
