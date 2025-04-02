@@ -17,7 +17,7 @@ self.addEventListener("install", (event) => {
       // Open the specified cache
       const cache = await caches.open(CACHE_NAME);
       // Add all static files to the cache
-      cache.addAll(APP_STATIC_RESOURCES);
+      await cache.addAll(APP_STATIC_RESOURCES);
     })() // Immediately invoke the async function
   );
 });

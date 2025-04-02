@@ -5,6 +5,7 @@ import {storeEditedSession} from "./functions/storeEditedSession.js";
 import {getAllStoredSessions} from "./functions/getAllStoredSessions.js";
 import {resetErrors} from "./functions/resetErrors.js";
 import {createPastSessionItem} from "./components/pastSessionItem.js";
+import {deleteSession} from "./components/editSessionModal.js";
 
 export const STORAGE_KEY = "learnerlog";
 const newSessionForm = document.getElementById("newSessionForm");
@@ -83,7 +84,11 @@ editSessionForm.addEventListener("submit", (event) => {
   editSessionModal.close();
 });
 
-function renderPastSessions() {
+document.getElementById("deleteSessionButton").addEventListener("click", () => {
+  deleteSession()
+});
+
+export function renderPastSessions() {
   pastSessionList.innerHTML = "";
 
   const sessions = getAllStoredSessions();
