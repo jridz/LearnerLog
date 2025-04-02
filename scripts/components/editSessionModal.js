@@ -1,6 +1,6 @@
 import {getAllStoredSessions} from "../functions/getAllStoredSessions.js";
-import {STORAGE_KEY} from "../app.js";
-import {renderPastSessions} from "../app.js";
+import {STORAGE_KEY} from "../../app.js";
+import {renderPastSessions} from "../../app.js";
 import {toast} from "./toast.js";
 
 const editSessionForm = document.getElementById("editSessionForm");

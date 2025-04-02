@@ -1,11 +1,11 @@
-import {dateValid} from "./functions/dateValid.js";
-import {timeValid} from "./functions/timeValid.js";
-import {storeNewSession} from "./functions/storeNewSession.js";
-import {storeEditedSession} from "./functions/storeEditedSession.js";
-import {getAllStoredSessions} from "./functions/getAllStoredSessions.js";
-import {resetErrors} from "./functions/resetErrors.js";
-import {createPastSessionItem} from "./components/pastSessionItem.js";
-import {deleteSession} from "./components/editSessionModal.js";
+import {dateValid} from "./scripts/functions/dateValid.js";
+import {timeValid} from "./scripts/functions/timeValid.js";
+import {storeNewSession} from "./scripts/functions/storeNewSession.js";
+import {storeEditedSession} from "./scripts/functions/storeEditedSession.js";
+import {getAllStoredSessions} from "./scripts/functions/getAllStoredSessions.js";
+import {resetErrors} from "./scripts/functions/resetErrors.js";
+import {createPastSessionItem} from "./scripts/components/pastSessionItem.js";
+import {deleteSession} from "./scripts/components/editSessionModal.js";
 
 export const STORAGE_KEY = "learnerlog";
 const newSessionForm = document.getElementById("newSessionForm");
@@ -108,3 +108,16 @@ window.onload = () => {
   renderPastSessions();
   resetErrors();
 };
+
+// Check if the browser supports service workers
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/serviceWorker.js')
+      .then(registration => {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch(error => {
+        console.error('Service Worker registration failed:', error);
+      });
+  });
+}
