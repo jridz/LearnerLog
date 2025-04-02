@@ -1,4 +1,4 @@
-import {STORAGE_KEY} from "../../app.js";
+import {STORAGE_KEY} from "../app.js";
 
 // Get all stored sessions from localStorage
 export function getAllStoredSessions() {
