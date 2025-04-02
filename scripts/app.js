@@ -108,37 +108,3 @@ window.onload = () => {
   renderPastSessions();
   resetErrors();
 };
-
-// Register the service worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', async () => {
-    try {
-      const registration = await navigator.serviceWorker.register('/LearnerLog/scripts/serviceWorker.js');
-      console.log('ServiceWorker registration successful with scope:', registration.scope);
-
-      // Handle updates
-      registration.addEventListener('updatefound', () => {
-        const newWorker = registration.installing;
-
-        newWorker.addEventListener('statechange', () => {
-          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-            // New version available
-            if (confirm('A new version of this app is available. Reload to update?')) {
-              // Send skip waiting message to the service worker
-              newWorker.postMessage({ type: 'SKIP_WAITING' });
-              window.location.reload();
-            }
-          }
-        });
-      });
-    } catch (error) {
-      console.error('ServiceWorker registration failed:', error);
-    }
-  });
-
-  // Detect controller change (when skipWaiting is called)
-  navigator.serviceWorker.addEventListener('controllerchange', () => {
-    // Reload the page when the new service worker takes over
-    window.location.reload();
-  });
-}

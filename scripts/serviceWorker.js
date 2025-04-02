@@ -1,16 +1,9 @@
-const VERSION = "v3";
-const CACHE_NAME = `learnerlog-${VERSION}`;
+const VERSION = "v2";
+const CACHE_NAME = `learner-hours-${VERSION}`;
 
 const APP_STATIC_RESOURCES = [
-  "/LearnerLog/",
   "/LearnerLog/index.html",
-  "/LearnerLog/statistics.html",
-  "/LearnerLog/settings.html",
-
   "/LearnerLog/styles/main.css",
-  "/LearnerLog/assets/branding/LearnerLog.svg",
-  "/LearnerLog/manifest.json",
-
   "/LearnerLog/scripts/app.js",
   // Functions
   "/LearnerLog/scripts/functions/convertTo12HourFormat.js",
@@ -32,98 +25,56 @@ const APP_STATIC_RESOURCES = [
 self.addEventListener("install", (event) => {
   event.waitUntil(
     (async () => {
+      // Open the specified cache
       const cache = await caches.open(CACHE_NAME);
       // Add all static files to the cache
       await cache.addAll(APP_STATIC_RESOURCES);
-      // Force the waiting service worker to become the active service worker
-      await self.skipWaiting();
-    })()
+    })() // Immediately invoke the async function
   );
 });
 
-// Activate event: clean up old caches
+// Activate event: delete old caches
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     (async () => {
-      // Get all cache keys
-      const cacheKeys = await caches.keys();
-      // Delete old caches
+      // Get a list of all the caches
+      const names = await caches.keys();
+      // Go through the list
       await Promise.all(
-        cacheKeys.map((key) => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
+        names.map((name) => {
+          // Check if it is not the current cache
+          if (name !== CACHE_NAME) {
+            // Delete it
+            return caches.delete(name);
           }
         })
       );
-      // Take control of all clients as soon as the service worker activates
+      // Set the current service worker as the controller
       await clients.claim();
     })()
   );
 });
 
-// Fetch event: network-first strategy with cache fallback
+// Fetch event: intercept server requests
 self.addEventListener("fetch", (event) => {
-  // Skip cross-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) {
+  // As a single page app, direct app to always go to cached home page
+  if (event.request.mode === "navigate") {
+    // Looking for a web page
+    event.respondWith(caches.match("/"));
     return;
   }
 
+  // For all other requests, go to the cache first, and then the network
   event.respondWith(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
-
-      // For navigation requests, try the network first
-      if (event.request.mode === "navigate") {
-        try {
-          // Try network first
-          const networkResponse = await fetch(event.request);
-          // Update cache with fresh response
-          await cache.put(event.request, networkResponse.clone());
-          return networkResponse;
-        } catch (error) {
-          // If network fails, fall back to cache
-          const cachedResponse = await cache.match("/LearnerLog/index.html");
-          if (cachedResponse) {
-            return cachedResponse;
-          }
-          return new Response("Navigation failed and no cached version available", {
-            status: 503,
-            statusText: "Service Unavailable"
-          });
-        }
+      const cachedResponse = await cache.match(event.request.url);
+      if (cachedResponse) {
+        // Return the cached response if it's available
+        return cachedResponse;
       }
-
-      // For non-navigation requests, try cache first
-      else {
-        // Check cache first
-        const cachedResponse = await cache.match(event.request);
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-
-        // If not in cache, try network
-        try {
-          const networkResponse = await fetch(event.request);
-          // Cache the response for future use
-          if (networkResponse.ok) {
-            await cache.put(event.request, networkResponse.clone());
-          }
-          return networkResponse;
-        } catch (error) {
-          // If both cache and network fail, return a fallback response or error
-          return new Response("Resource not available offline", {
-            status: 504,
-            statusText: "Network Error"
-          });
-        }
-      }
+      // If resource isn't in the cache, return a 404
+      return new Response(null, {status: 404});
     })()
   );
-});
-
-// Handle messages from the client
-self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
-  }
 });
