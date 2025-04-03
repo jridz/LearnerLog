@@ -14,6 +14,10 @@ export function openEditSessionModal(index) {
   const editSessionEndLocationInput = document.getElementById("editSessionEndLocation");
 
   const sessions = getAllStoredSessions();
+  
+  editSessionDateInput.addEventListener('focus', (event) => {
+    event.preventDefault();
+  });
 
   editSessionDateInput.value = sessions[index].date;
   editSessionStartTimeInput.value = sessions[index].startTime;
