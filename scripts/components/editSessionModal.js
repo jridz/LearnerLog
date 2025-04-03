@@ -14,9 +14,11 @@ export function openEditSessionModal(index) {
   const editSessionEndLocationInput = document.getElementById("editSessionEndLocation");
 
   const sessions = getAllStoredSessions();
-  
-  editSessionDateInput.addEventListener('focus', (event) => {
+
+  editSessionDateInput.addEventListener('touchstart', function(event) {
     event.preventDefault();
+    // This allows the element to receive focus without opening the picker
+    this.focus();
   });
 
   editSessionDateInput.value = sessions[index].date;
