@@ -4,8 +4,8 @@ const BASE_PATH = "/LearnerLog"
 
 const APP_STATIC_RESOURCES = [
   `${BASE_PATH}/index.html`,
-  `${BASE_PATH}/styles/main.css`,
-  `${BASE_PATH}/scripts/app.js`,
+  `${BASE_PATH}/main.css`,
+  `${BASE_PATH}/app.js`,
   // Functions
   `${BASE_PATH}/scripts/functions/convertTo12HourFormat.js`,
   `${BASE_PATH}/scripts/functions/convertToHoursMinutes.js`,
