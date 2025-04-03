@@ -1,4 +1,4 @@
-const VERSION = "v6";
+const VERSION = "v7";
 const CACHE_NAME = `learner-hours-${VERSION}`;
 const BASE_PATH = "/LearnerLog"
 
@@ -81,6 +81,7 @@ self.addEventListener("fetch", (event) => {
           }
         } catch (error) {
           // Network failed
+          console.error("Network error:", error);
         }
 
         // If all else fails, return index.html as fallback
