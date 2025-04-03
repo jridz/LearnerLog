@@ -4,6 +4,19 @@ body, button {
     font-family: 'Inter', sans-serif;
 }
 
+body {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #fff9ec;
+}
+
+#content {
+    flex-grow: 1;
+}
+
 #header {
     margin: 16px;
     display: flex;
@@ -30,60 +43,49 @@ body, button {
     font-style: italic;
 }
 
-#navToggle {
-    height: 24px;
-    width: auto;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    color: black;
+nav {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffe79e;
+    height: 100vh;
 }
 
-#navMenu {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    background-color: white;
-    width: 50%;
-    max-width: 400px;
-    padding: 0;
-    margin: 0;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-#navMenu.visible {
-    display: block;
-}
-
-#navMenu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#navMenu ul li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    cursor: pointer;
-}
-
-#navMenu ul li a {
+nav a {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    margin: 10px;
     text-decoration: none;
     color: black;
-    font-size: 20px;
 }
 
-#navMenu ul li a svg {
-    margin-right: 10px;
-    fill: black;
+nav a p {
+    font-size: 14px;
+    margin: 0;
 }
+
+nav a .navIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fad522;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+nav a:hover {
+    .navIcon {
+        background-color: #dfb700;
+    }
+}
+
+nav a .navIcon svg {
+    display: block;
+    margin: 2px 16px;
+    fill: black;
+    height: 20px;
+}
+
 
 main {
     width: 100%;
@@ -96,12 +98,8 @@ main {
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    align-items: center;
-    width: 100%;
-    background-color: #fff9ec;
+main h2 {
+    margin-top: 0;
 }
 
 .fab {
@@ -300,18 +298,56 @@ dialog::backdrop {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeOut {
-    from { opacity: 1; transform: translateY(0); }
-    to { opacity: 0; transform: translateY(20px); }
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
 }
 
 /* Mobile */
 @media (max-width: 840px) {
     main {
         max-width: 100%;
+    }
+
+    nav {
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        flex-direction: row;
+        background-color: #ffe79e;
+        height: 60px;
+        width: 100vw;
+    }
+
+    nav a {
+        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .fab {
+        bottom: calc(20px + 60px);
+        right: 20px;
+    }
+
+    #content {
+        margin-bottom: 60px;
     }
 }

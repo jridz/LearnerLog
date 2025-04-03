@@ -14,22 +14,6 @@ const newSessionModal = document.getElementById("newSessionModal");
 const editSessionModal = document.getElementById("editSessionModal");
 export const pastSessionList = document.getElementById("pastSessionsList");
 
-function toggleNav() {
-  const nav = document.getElementById("navMenu");
-  nav.classList.toggle("visible");
-}
-
-document.addEventListener("click", (event) => {
-  const navMenu = document.getElementById("navMenu");
-  const navToggle = document.getElementById("navToggle");
-
-  if (!navMenu.contains(event.target) && !navToggle.contains(event.target)) {
-    navMenu.classList.remove("visible");
-  }
-});
-
-document.getElementById("navToggle").addEventListener("click", toggleNav);
-
 newSessionForm.addEventListener("submit", (event) => {
   event.preventDefault();
   resetErrors();
