@@ -1,4 +1,4 @@
-const VERSION = "v3";
+const VERSION = "v4";
 const CACHE_NAME = `learner-hours-${VERSION}`;
 const BASE_PATH = "/LearnerLog"
 
@@ -60,7 +60,7 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   // For navigation requests
   if (event.request.mode === "navigate") {
-    event.respondWith(caches.match(`${BASE_PATH}/index.html"`));
+    event.respondWith(caches.match(`${BASE_PATH}/index.html`));
     return;
   }
 

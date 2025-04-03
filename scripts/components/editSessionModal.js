@@ -1,6 +1,6 @@
 import {getAllStoredSessions} from "../functions/getAllStoredSessions.js";
-import {STORAGE_KEY} from "../app.js";
-import {renderPastSessions} from "../app.js";
+import {STORAGE_KEY} from "../../app.js";
+import {renderPastSessions} from "../../app.js";
 import {toast} from "./toast.js";
 
 const editSessionForm = document.getElementById("editSessionForm");
@@ -27,7 +27,7 @@ export function openEditSessionModal(index) {
 
 export function deleteSession() {
   const index = document.getElementById("editSessionModal").dataset.index;
-  
+
   // Get data from storage
   const sessions = getAllStoredSessions();
 
@@ -42,7 +42,7 @@ export function deleteSession() {
   renderPastSessions();
   editSessionForm.reset();
   editSessionModal.close();
-  
+
   // Show a toast message
   toast("Session deleted", "#ff0000");
 }

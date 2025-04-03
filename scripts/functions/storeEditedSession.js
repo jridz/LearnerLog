@@ -1,5 +1,5 @@
 import {getAllStoredSessions} from "./getAllStoredSessions.js";
-import {STORAGE_KEY} from "../app.js";
+import {STORAGE_KEY} from "../../app.js";
 
 // Store the new session in our client-side storage
 export function storeEditedSession(index, date, startTime, endTime, duration, startLocation, endLocation) {
