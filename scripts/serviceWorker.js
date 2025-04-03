@@ -1,24 +1,25 @@
-const VERSION = "v2";
+const VERSION = "v3";
 const CACHE_NAME = `learner-hours-${VERSION}`;
+const BASE_PATH = "/LearnerLog"
 
 const APP_STATIC_RESOURCES = [
-  "/LearnerLog/index.html",
-  "/LearnerLog/styles/main.css",
-  "/LearnerLog/scripts/app.js",
+  `${BASE_PATH}/index.html`,
+  `${BASE_PATH}/styles/main.css`,
+  `${BASE_PATH}/scripts/app.js`,
   // Functions
-  "/LearnerLog/scripts/functions/convertTo12HourFormat.js",
-  "/LearnerLog/scripts/functions/convertToHoursMinutes.js",
-  "/LearnerLog/scripts/functions/dateValid.js",
-  "/LearnerLog/scripts/functions/formatDate.js",
-  "/LearnerLog/scripts/functions/getAllStoredSessions.js",
-  "/LearnerLog/scripts/functions/resetErrors.js",
-  "/LearnerLog/scripts/functions/storeEditedSession.js",
-  "/LearnerLog/scripts/functions/storeNewSession.js",
-  "/LearnerLog/scripts/functions/timeValid.js",
+  `${BASE_PATH}/scripts/functions/convertTo12HourFormat.js`,
+  `${BASE_PATH}/scripts/functions/convertToHoursMinutes.js`,
+  `${BASE_PATH}/scripts/functions/dateValid.js`,
+  `${BASE_PATH}/scripts/functions/formatDate.js`,
+  `${BASE_PATH}/scripts/functions/getAllStoredSessions.js`,
+  `${BASE_PATH}/scripts/functions/resetErrors.js`,
+  `${BASE_PATH}/scripts/functions/storeEditedSession.js`,
+  `${BASE_PATH}/scripts/functions/storeNewSession.js`,
+  `${BASE_PATH}/scripts/functions/timeValid.js`,
   // Components
-  "/LearnerLog/scripts/components/editSessionModal.js",
-  "/LearnerLog/scripts/components/pastSessionItem.js",
-  "/LearnerLog/scripts/components/toast.js",
+  `${BASE_PATH}/scripts/components/editSessionModal.js`,
+  `${BASE_PATH}/scripts/components/pastSessionItem.js`,
+  `${BASE_PATH}/scripts/components/toast.js`,
 ];
 
 // Install event: cache static resources
@@ -57,24 +58,36 @@ self.addEventListener("activate", (event) => {
 
 // Fetch event: intercept server requests
 self.addEventListener("fetch", (event) => {
-  // As a single page app, direct app to always go to cached home page
+  // For navigation requests
   if (event.request.mode === "navigate") {
-    // Looking for a web page
-    event.respondWith(caches.match("/"));
+    event.respondWith(caches.match(`${BASE_PATH}/index.html"`));
     return;
   }
 
-  // For all other requests, go to the cache first, and then the network
+  // For all other requests, use cache-first then network strategy
   event.respondWith(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
-      const cachedResponse = await cache.match(event.request.url);
+      const cachedResponse = await cache.match(event.request);
+
       if (cachedResponse) {
-        // Return the cached response if it's available
         return cachedResponse;
       }
-      // If resource isn't in the cache, return a 404
-      return new Response(null, {status: 404});
+
+      try {
+        // Not in cache, try the network
+        const networkResponse = await fetch(event.request);
+
+        // Cache the response for future use
+        if (networkResponse.ok) {
+          cache.put(event.request, networkResponse.clone());
+        }
+
+        return networkResponse;
+      } catch (error) {
+        // Network failed, return a fallback or error
+        return new Response("Network error", {status: 408});
+      }
     })()
   );
 });
