@@ -1,4 +1,4 @@
-const VERSION = "v4";
+const VERSION = "v5";
 const CACHE_NAME = `learner-hours-${VERSION}`;
 const BASE_PATH = "/LearnerLog"
 
@@ -62,8 +62,31 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   // For navigation requests
   if (event.request.mode === "navigate") {
-    event.respondWith(caches.match(`${BASE_PATH}/index.html`));
-    return;
+    event.respondWith(
+      (async () => {
+        const cache = await caches.open(CACHE_NAME);
+        const cachedResponse = await cache.match(event.request);
+
+        // Return the actual page if found in cache
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
+        // Try network
+        try {
+          const networkResponse = await fetch(event.request);
+          if (networkResponse.ok) {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          }
+        } catch (error) {
+          // Network failed
+        }
+
+        // If all else fails, return index.html as fallback
+        return cache.match(`${BASE_PATH}/index.html`);
+      })()
+    );
   }
 
   // For all other requests, use cache-first then network strategy
