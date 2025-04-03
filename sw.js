@@ -1,4 +1,4 @@
-const VERSION = "v5";
+const VERSION = "v6";
 const CACHE_NAME = `learner-hours-${VERSION}`;
 const BASE_PATH = "/LearnerLog"
 
