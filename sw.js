@@ -20,6 +20,8 @@ const APP_STATIC_RESOURCES = [
   `${BASE_PATH}/scripts/components/editSessionModal.js`,
   `${BASE_PATH}/scripts/components/pastSessionItem.js`,
   `${BASE_PATH}/scripts/components/toast.js`,
+  // Assets
+  `${BASE_PATH}/assets/branding/LearnerLog.svg`
 ];
 
 // Install event: cache static resources
