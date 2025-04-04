@@ -250,7 +250,7 @@ dialog::backdrop {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    overflow: scroll;
+    /*overflow: scroll;*/
 }
 
 #pastSessionsList .sessionItemContainer .sessionInfo p {
@@ -356,5 +356,9 @@ dialog::backdrop {
 
     #content {
         margin-bottom: 60px;
+    }
+
+    #pastSessionsList .sessionItemContainer .sessionInfo {
+        overflow: scroll;
     }
 }
