@@ -325,6 +325,33 @@ dialog::backdrop {
     }
 }
 
+.settingsButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
+.settingsButton svg {
+    fill: black;
+    margin-right: 8px;
+}
+
+#deleteAllDataButton {
+    background-color: #ff2b2b;
+    color: white;
+}
+
+#deleteAllDataButton svg {
+    fill: white;
+}
+
 /* Mobile */
 @media (max-width: 840px) {
     main {
