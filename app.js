@@ -8,15 +8,13 @@ import {createPastSessionItem} from "./scripts/components/pastSessionItem.js";
 import {deleteSession} from "./scripts/components/editSessionModal.js";
 
 export const STORAGE_KEY = "learnerlog";
-const newSessionForm = document.getElementById("newSessionForm");
-const editSessionForm = document.getElementById("editSessionForm");
-const newSessionModal = document.getElementById("newSessionModal");
-const editSessionModal = document.getElementById("editSessionModal");
-export const pastSessionList = document.getElementById("pastSessionsList");
 
-newSessionForm.addEventListener("submit", (event) => {
+function newSessionFormSubmit(event) {
   event.preventDefault();
   resetErrors();
+
+  const newSessionForm = document.getElementById("newSessionForm");
+  const newSessionModal = document.getElementById("newSessionModal");
 
   const date = document.getElementById("newSessionDateInput").value;
   const startTime = document.getElementById("newSessionStartTimeInput");
@@ -38,11 +36,14 @@ newSessionForm.addEventListener("submit", (event) => {
   renderPastSessions();
   newSessionForm.reset();
   newSessionModal.close();
-});
+}
 
-editSessionForm.addEventListener("submit", (event) => {
+function editSessionFormSubmit(event) {
   event.preventDefault();
   resetErrors();
+
+  const editSessionForm = document.getElementById("editSessionForm");
+  const editSessionModal = document.getElementById("editSessionModal");
 
   const index = document.getElementById("editSessionModal").dataset.index;
 
@@ -66,13 +67,11 @@ editSessionForm.addEventListener("submit", (event) => {
   renderPastSessions();
   editSessionForm.reset();
   editSessionModal.close();
-});
-
-document.getElementById("deleteSessionButton").addEventListener("click", () => {
-  deleteSession()
-});
+}
 
 export function renderPastSessions() {
+  const pastSessionList = document.getElementById("pastSessionsList");
+
   pastSessionList.innerHTML = "";
 
   const sessions = getAllStoredSessions();
@@ -100,8 +99,3 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
-
-window.onload = () => {
-  renderPastSessions();
-  resetErrors();
-};

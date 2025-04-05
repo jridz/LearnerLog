@@ -1,11 +1,11 @@
 import {formatDate} from "../functions/formatDate.js";
 import {convertTo12HourFormat} from "../functions/convertTo12HourFormat.js";
 import {convertToHoursMinutes} from "../functions/convertToHoursMinutes.js";
-import {pastSessionList} from "../../app.js";
 import {openEditSessionModal} from "./editSessionModal.js";
 
 export function createPastSessionItem(session, index) {
   const sessionItemContainer = document.createElement("li");
+  const pastSessionList = document.getElementById("pastSessionsList");
   sessionItemContainer.classList.add("sessionItemContainer");
 
   const sessionInfo = document.createElement("div");
