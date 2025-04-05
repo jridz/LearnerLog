@@ -1,4 +1,4 @@
-const VERSION = "v7.4";
+const VERSION = "v8";
 const CACHE_NAME = `learner-hours-${VERSION}`;
 const BASE_PATH = "/LearnerLog"
 
@@ -60,60 +60,32 @@ self.addEventListener("activate", (event) => {
 
 // Fetch event: intercept server requests
 self.addEventListener("fetch", (event) => {
-  // For navigation requests
-  if (event.request.mode === "navigate") {
-    event.respondWith(
-      (async () => {
+  event.respondWith(
+    (async () => {
+      // Check if the request is for a static resource
+      if (APP_STATIC_RESOURCES.includes(new URL(event.request.url).pathname)) {
         const cache = await caches.open(CACHE_NAME);
         const cachedResponse = await cache.match(event.request);
 
-        // Return the actual page if found in cache
+        // If found in cache, return it
         if (cachedResponse) {
           return cachedResponse;
         }
 
-        // Try network
+        // If not found in cache, fetch from network
         try {
           const networkResponse = await fetch(event.request);
           if (networkResponse.ok) {
-            cache.put(event.request, networkResponse.clone());
+            await cache.put(event.request, networkResponse.clone());
             return networkResponse;
           }
         } catch (error) {
-          // Network failed
           console.error("Network error:", error);
         }
-
-        // If all else fails, return index.html as fallback
-        return cache.match(`${BASE_PATH}/index.html`);
-      })()
-    );
-  }
-
-  // For all other requests, use cache-first then network strategy
-  event.respondWith(
-    (async () => {
-      const cache = await caches.open(CACHE_NAME);
-      const cachedResponse = await cache.match(event.request);
-
-      if (cachedResponse) {
-        return cachedResponse;
       }
 
-      try {
-        // Not in cache, try the network
-        const networkResponse = await fetch(event.request);
-
-        // Cache the response for future use
-        if (networkResponse.ok) {
-          cache.put(event.request, networkResponse.clone());
-        }
-
-        return networkResponse;
-      } catch (error) {
-        // Network failed, return a fallback or error
-        return new Response("Network error", {status: 408});
-      }
+      // Fallback to network if not a static resource
+      return fetch(event.request);
     })()
   );
 });
