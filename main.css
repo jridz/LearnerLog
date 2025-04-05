@@ -49,6 +49,7 @@ nav {
     flex-direction: column;
     background-color: #ffe79e;
     height: 100vh;
+    z-index: 30;
 }
 
 nav a {
@@ -274,15 +275,16 @@ dialog::backdrop {
 
 .toast {
     position: fixed;
-    bottom: 20px;
     left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
     padding: 12px 16px;
     border-radius: 4px;
     display: flex;
     align-items: center;
     gap: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    z-index: 10;
     opacity: 0;
     color: white;
 }
@@ -296,32 +298,32 @@ dialog::backdrop {
 }
 
 .toast-enter {
-    animation: fadeIn 0.5s forwards;
+    animation: toastFadeIn 0.5s forwards;
 }
 
 .toast-exit {
-    animation: fadeOut 0.5s forwards;
+    animation: toastFadeOut 0.5s forwards;
 }
 
-@keyframes fadeIn {
+@keyframes toastFadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translate(-50%, 20px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate(-50%, 0);
     }
 }
 
-@keyframes fadeOut {
+@keyframes toastFadeOut {
     from {
         opacity: 1;
-        transform: translateY(0);
+        transform: translate(-50%, 0);
     }
     to {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translate(-50%, 20px);
     }
 }
 
@@ -379,6 +381,10 @@ dialog::backdrop {
     .fab {
         bottom: calc(20px + 60px + 15px);
         right: 20px;
+    }
+
+    .toast {
+        bottom: calc(20px + 60px);
     }
 
     #content {
