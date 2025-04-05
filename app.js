@@ -6,67 +6,72 @@ import {getAllStoredSessions} from "./scripts/functions/getAllStoredSessions.js"
 import {resetErrors} from "./scripts/functions/resetErrors.js";
 import {createPastSessionItem} from "./scripts/components/pastSessionItem.js";
 import {deleteSession} from "./scripts/components/editSessionModal.js";
+import {clearAppData} from "./scripts/functions/clearAppData.js";
+import {clearAppCache} from "./scripts/functions/clearAppCache.js";
+
+const newSessionForm = document.getElementById("newSessionForm");
+const newSessionModal = document.getElementById("newSessionModal");
+const editSessionForm = document.getElementById("editSessionForm");
+const editSessionModal = document.getElementById("editSessionModal");
 
 export const STORAGE_KEY = "learnerlog";
 
-function newSessionFormSubmit(event) {
-  event.preventDefault();
-  resetErrors();
+if (newSessionForm) {
+  newSessionForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    resetErrors();
 
-  const newSessionForm = document.getElementById("newSessionForm");
-  const newSessionModal = document.getElementById("newSessionModal");
+    const date = document.getElementById("newSessionDateInput").value;
+    const startTime = document.getElementById("newSessionStartTimeInput");
+    const endTime = document.getElementById("newSessionEndTimeInput");
+    const startLocation = document.getElementById("newSessionStartLocation").value;
+    const endLocation = document.getElementById("newSessionEndLocation").value
 
-  const date = document.getElementById("newSessionDateInput").value;
-  const startTime = document.getElementById("newSessionStartTimeInput");
-  const endTime = document.getElementById("newSessionEndTimeInput");
-  const startLocation = document.getElementById("newSessionStartLocation").value;
-  const endLocation = document.getElementById("newSessionEndLocation").value
+    const duration = (endTime.valueAsNumber - startTime.valueAsNumber);
 
-  const duration = (endTime.valueAsNumber - startTime.valueAsNumber);
+    if (!dateValid(date)) {
+      return;
+    }
 
-  if (!dateValid(date)) {
-    return;
-  }
+    if (!timeValid(startTime.value, endTime.value)) {
+      return;
+    }
 
-  if (!timeValid(startTime.value, endTime.value)) {
-    return;
-  }
-
-  storeNewSession(date, startTime.value, endTime.value, duration, startLocation, endLocation);
-  renderPastSessions();
-  newSessionForm.reset();
-  newSessionModal.close();
+    storeNewSession(date, startTime.value, endTime.value, duration, startLocation, endLocation);
+    renderPastSessions();
+    newSessionForm.reset();
+    newSessionModal.close();
+  });
 }
 
-function editSessionFormSubmit(event) {
-  event.preventDefault();
-  resetErrors();
+if (editSessionForm) {
+  editSessionForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    resetErrors();
 
-  const editSessionForm = document.getElementById("editSessionForm");
-  const editSessionModal = document.getElementById("editSessionModal");
+    const index = document.getElementById("editSessionModal").dataset.index;
 
-  const index = document.getElementById("editSessionModal").dataset.index;
+    const date = document.getElementById("editSessionDateInput").value;
+    const startTime = document.getElementById("editSessionStartTimeInput");
+    const endTime = document.getElementById("editSessionEndTimeInput");
+    const startLocation = document.getElementById("editSessionStartLocation").value;
+    const endLocation = document.getElementById("editSessionEndLocation").value
 
-  const date = document.getElementById("editSessionDateInput").value;
-  const startTime = document.getElementById("editSessionStartTimeInput");
-  const endTime = document.getElementById("editSessionEndTimeInput");
-  const startLocation = document.getElementById("editSessionStartLocation").value;
-  const endLocation = document.getElementById("editSessionEndLocation").value
+    const duration = (endTime.valueAsNumber - startTime.valueAsNumber);
 
-  const duration = (endTime.valueAsNumber - startTime.valueAsNumber);
+    if (!dateValid(date)) {
+      return;
+    }
 
-  if (!dateValid(date)) {
-    return;
-  }
+    if (!timeValid(startTime.value, endTime.value)) {
+      return;
+    }
 
-  if (!timeValid(startTime.value, endTime.value)) {
-    return;
-  }
-
-  storeEditedSession(index, date, startTime.value, endTime.value, duration, startLocation, endLocation);
-  renderPastSessions();
-  editSessionForm.reset();
-  editSessionModal.close();
+    storeEditedSession(index, date, startTime.value, endTime.value, duration, startLocation, endLocation);
+    renderPastSessions();
+    editSessionForm.reset();
+    editSessionModal.close();
+  });
 }
 
 export function renderPastSessions() {
@@ -99,3 +104,11 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+
+window.clearAppCache = clearAppCache;
+window.clearAppData = clearAppData;
+window.renderPastSessions = renderPastSessions;
+window.resetErrors = resetErrors;
+window.deleteSession = deleteSession;
+window.clearAppData = clearAppData;
+window.clearAppCache = clearAppCache;

@@ -59,8 +59,7 @@
 <dialog id="newSessionModal" class="sessionModal">
     <h2>New Session</h2>
     <p>Enter the date and start & end times</p>
-    <form id="newSessionForm"
-          onload="this.addEventListener('submit', (event) => {newSessionFormSubmit(event)});">
+    <form id="newSessionForm">
         <fieldset>
             <div>
                 <label for="newSessionDateInput">Date</label>
@@ -118,7 +117,7 @@
 <dialog id="editSessionModal" class="sessionModal">
     <h2>Edit Session</h2>
     <p>Enter the date and start & end times</p>
-    <form id="editSessionForm" onload="this.addEventListener('submit', (event) => {editSessionFormSubmit(event)}">
+    <form id="editSessionForm">
         <fieldset>
             <div>
                 <label for="editSessionDateInput">Date</label>
@@ -181,7 +180,10 @@
 </dialog>
 </body>
 <script type="module" src="app.js"></script>
-<script>
+<script type="module">
+  import {renderPastSessions} from './app.js';
+  import {resetErrors} from './scripts/functions/resetErrors.js';
+
   window.onload = () => {
     renderPastSessions();
     resetErrors();

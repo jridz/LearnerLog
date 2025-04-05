@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="main.css"/>
     <link rel="icon" href="assets/branding/LearnerLog.svg"/>
     <link rel="manifest" href="manifest.json"/>
+    <script type="module" src="app.js"></script>
 </head>
 <body>
 <nav id="navMenu">
@@ -46,14 +47,13 @@
     <main>
         <h2>Settings</h2>
         <button id="deleteAllDataButton" class="settingsButton"
-                onclick="alert('Are you sure you want to delete all data? This action cannot be undone.');">
+                onclick="clearAppData()">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
                 <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>
             </svg>
             Delete all data
         </button>
-        <button id="clearAppCacheButton" class="settingsButton"
-                onclick="alert('Are you sure you want to clear the cache?');">
+        <button id="clearAppCacheButton" class="settingsButton" onclick="clearAppCache()">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
                 <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>
             </svg>
@@ -67,5 +67,4 @@
 <!--  </svg>-->
 <!--</button>-->
 </body>
-<script type="module" src="app.js"></script>
 </html>
