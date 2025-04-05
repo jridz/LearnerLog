@@ -1,12 +1,15 @@
-const VERSION = "v8";
+const VERSION = "v8.1";
 const CACHE_NAME = `learner-hours-${VERSION}`;
 const BASE_PATH = "/LearnerLog"
 
 const APP_STATIC_RESOURCES = [
   `${BASE_PATH}/index.html`,
+  `${BASE_PATH}/settings.html`,
   `${BASE_PATH}/main.css`,
   `${BASE_PATH}/app.js`,
   // Functions
+  `${BASE_PATH}/scripts/functions/clearAppCache.js`,
+  `${BASE_PATH}/scripts/functions/clearAppData.js`,
   `${BASE_PATH}/scripts/functions/convertTo12HourFormat.js`,
   `${BASE_PATH}/scripts/functions/convertToHoursMinutes.js`,
   `${BASE_PATH}/scripts/functions/dateValid.js`,
