@@ -100,7 +100,7 @@ main {
     box-sizing: border-box;
 }
 
-main h2 {
+main h2, main h3 {
     margin-top: 0;
 }
 
@@ -338,6 +338,8 @@ dialog::backdrop {
     font-size: 16px;
     cursor: pointer;
     margin-bottom: 8px;
+    text-decoration: none;
+    color: black;
 }
 
 .settingsButton svg {
