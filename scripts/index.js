@@ -34,7 +34,7 @@ function timeValid(startTime, endTime) {
   const editSessionEndTimeError = document.getElementById('editSessionEndTimeError');
 
   // Check that end time is after start time and neither is null
-  if (!startTime || !endTime || startTime > endTime) {
+  if (!startTime || !endTime || startTime >= endTime || startTime === endTime) {
     if (!startTime) {
       newSessionStartTimeError.style.display = "flex";
       editSessionStartTimeError.style.display = "flex";
@@ -43,7 +43,7 @@ function timeValid(startTime, endTime) {
       newSessionEndTimeError.style.display = "flex";
       editSessionEndTimeError.style.display = "flex";
     }
-    if (startTime > endTime) {
+    if (startTime >= endTime) {
       newSessionStartTimeError.style.display = "flex";
       editSessionStartTimeError.style.display = "flex";
       newSessionStartTimeError.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" height=\"15px\" viewBox=\"0 -960 960 960\" width=\"15px\"\n" +
