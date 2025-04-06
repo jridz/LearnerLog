@@ -3,26 +3,26 @@
     justify-content: center;
     align-items: center;
     padding: 16px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     background-color: #fff;
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
     margin-bottom: 8px;
     text-decoration: none;
-    color: black;
+    color: #000;
 
     svg {
-        fill: black;
+        fill: #000;
         margin-right: 8px;
     }
 }
 
 #deleteAllDataButton {
-    background-color: #ff2b2b;
-    color: white;
+    background-color: var(--color-error);
+    color: #fff;
 }
 
 #deleteAllDataButton svg {
-    fill: white;
+    fill: #fff;
 }

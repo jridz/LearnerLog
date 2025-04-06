@@ -18,7 +18,7 @@
         border: none;
         cursor: pointer;
         font-size: 24px;
-        color: black;
+        color: #000;
     }
 
     form {
@@ -38,7 +38,7 @@
         input {
             padding: 5px;
             margin-top: 5px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--color-border);
             border-radius: 4px;
         }
 
@@ -48,32 +48,37 @@
             padding: 5px 10px;
             border: none;
             border-radius: 4px;
-            background-color: #fad522;
-            color: black;
+            background-color: var(--color-primary);
+            color: #000;
             cursor: pointer;
             font-size: 16px;
             align-items: center;
 
             svg {
-                fill: black;
+                fill: #000;
                 margin-right: 5px;
             }
         }
 
         #deleteSessionButton {
-            background-color: red;
+            color: #fff;
+            background-color: var(--color-error);
+
+            svg {
+                fill: #fff;
+            }
         }
     }
 
     .modalInputError {
         display: flex;
         align-items: center;
-        color: red;
+        color: var(--color-error);
         font-size: 12px;
         margin-top: 5px;
 
         svg {
-            fill: red;
+            fill: var(--color-error);
             margin-right: 5px;
         }
     }
@@ -88,7 +93,7 @@
 
     .sessionItemContainer {
         display: block;
-        border: 1px solid #ddd;
+        border: 1px solid var(--color-border);
         border-bottom: none;
         background-color: #fff;
 
@@ -114,10 +119,10 @@
                 border: none;
                 cursor: pointer;
                 font-size: 24px;
-                color: black;
+                color: #000;
 
                 svg {
-                    fill: black;
+                    fill: #000;
                 }
             }
         }
@@ -131,7 +136,8 @@
     .sessionItemContainer:last-child {
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid var(--color-border);
+        border-bottom: 1px solid var(--color-border);
     }
 }
 

@@ -14,6 +14,13 @@
 
 :root {
     font-family: 'Inter', sans-serif;
+
+    --color-primary: #fad522;
+    --color-primary-hover: #dfb700;
+    --color-background: #fff9ec;
+    --color-nav-background: #ffe79e;
+    --color-error: #ff2b2b;
+    --color-border: #ddd;
 }
 
 body {
@@ -22,7 +29,7 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
-    background-color: #fff9ec;
+    background-color: var(--color-background);
 }
 
 #content {
@@ -59,7 +66,7 @@ body {
 nav {
     display: flex;
     flex-direction: column;
-    background-color: #ffe79e;
+    background-color: var(--color-nav-background);
     height: 100vh;
     z-index: 30;
 
@@ -69,11 +76,11 @@ nav {
         flex-direction: column;
         margin: 10px;
         text-decoration: none;
-        color: black;
+        color: #000;
 
         :hover {
             .navIcon {
-                background-color: #dfb700;
+                background-color: var(--color-primary-hover);
             }
         }
 
@@ -86,14 +93,14 @@ nav {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #fad522;
+            background-color: var(--color-primary);
             border-radius: 10px;
             margin-bottom: 5px;
 
             svg {
                 display: block;
                 margin: 2px 16px;
-                fill: black;
+                fill: #000;
                 height: 20px;
             }
         }
@@ -125,7 +132,7 @@ main {
     right: 20px;
     width: 56px;
     height: 56px;
-    background-color: #fad522;
+    background-color: var(--color-primary);
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -138,7 +145,7 @@ main {
     }
 
     svg {
-        fill: black;
+        fill: #000;
     }
 }
 
@@ -217,7 +224,6 @@ dialog {
         bottom: 0;
         display: flex;
         flex-direction: row;
-        background-color: #ffe79e;
         height: 60px;
         width: 100vw;
         padding-bottom: 15px;
