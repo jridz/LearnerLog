@@ -1,4 +1,4 @@
-const VERSION = "v9";
+const VERSION = "v10";
 const CACHE_NAME = `learner-hours-${VERSION}`;
 const BASE_PATH = "/LearnerLog"
 
@@ -7,6 +7,8 @@ const APP_STATIC_RESOURCES = [
   `${BASE_PATH}/main.css`,
   `${BASE_PATH}/app.js`,
   `${BASE_PATH}/assets/branding/LearnerLog.svg`,
+  `${BASE_PATH}/assets/fonts/inter_variable.ttf`,
+  `${BASE_PATH}/assets/fonts/inter_italic_variable.tff`,
 
   // Index
   `${BASE_PATH}/index.html`,

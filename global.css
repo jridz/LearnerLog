@@ -1,4 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    src: url('./assets/fonts/inter_variable.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 100 900;
+    src: url('./assets/fonts/inter_italic_variable.ttf') format('truetype');
+}
 
 :root {
     font-family: 'Inter', sans-serif;
