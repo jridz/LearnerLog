@@ -1,30 +1,22 @@
-const VERSION = "v8.1";
+const VERSION = "v9";
 const CACHE_NAME = `learner-hours-${VERSION}`;
 const BASE_PATH = "/LearnerLog"
 
 const APP_STATIC_RESOURCES = [
-  `${BASE_PATH}/index.html`,
-  `${BASE_PATH}/settings.html`,
+  // Global
   `${BASE_PATH}/main.css`,
   `${BASE_PATH}/app.js`,
-  // Functions
-  `${BASE_PATH}/scripts/functions/clearAppCache.js`,
-  `${BASE_PATH}/scripts/functions/clearAppData.js`,
-  `${BASE_PATH}/scripts/functions/convertTo12HourFormat.js`,
-  `${BASE_PATH}/scripts/functions/convertToHoursMinutes.js`,
-  `${BASE_PATH}/scripts/functions/dateValid.js`,
-  `${BASE_PATH}/scripts/functions/formatDate.js`,
-  `${BASE_PATH}/scripts/functions/getAllStoredSessions.js`,
-  `${BASE_PATH}/scripts/functions/resetErrors.js`,
-  `${BASE_PATH}/scripts/functions/storeEditedSession.js`,
-  `${BASE_PATH}/scripts/functions/storeNewSession.js`,
-  `${BASE_PATH}/scripts/functions/timeValid.js`,
-  // Components
-  `${BASE_PATH}/scripts/components/editSessionModal.js`,
-  `${BASE_PATH}/scripts/components/pastSessionItem.js`,
-  `${BASE_PATH}/scripts/components/toast.js`,
-  // Assets
-  `${BASE_PATH}/assets/branding/LearnerLog.svg`
+  `${BASE_PATH}/assets/branding/LearnerLog.svg`,
+
+  // Index
+  `${BASE_PATH}/index.html`,
+  `${BASE_PATH}/scripts/index.js`,
+  `${BASE_PATH}/styles/index.css`,
+
+  // Settings
+  `${BASE_PATH}/settings.html`,
+  `${BASE_PATH}/scripts/settings.js`,
+  `${BASE_PATH}/styles/settings.css`,
 ];
 
 // Install event: cache static resources
