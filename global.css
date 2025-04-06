@@ -124,14 +124,15 @@ main {
 }
 
 .fab {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: fixed;
     bottom: 20px;
     right: 20px;
     width: 56px;
     height: 56px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--color-primary);
     color: #fff;
     border: none;
@@ -139,12 +140,14 @@ main {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     font-size: 24px;
     cursor: pointer;
+    overflow: hidden;
 
     :hover {
         filter: brightness(90%);
     }
 
     svg {
+        /*transform: translate(-50%, -50%);*/
         fill: #000;
         width: 24px;
         height: 24px;
