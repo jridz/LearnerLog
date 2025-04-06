@@ -105,7 +105,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            /*overflow: scroll;*/
+            overflow: scroll;
 
             p {
                 white-space: nowrap;
@@ -138,11 +138,5 @@
         border-bottom-right-radius: 8px;
         border-bottom: 1px solid var(--color-border);
         border-bottom: 1px solid var(--color-border);
-    }
-}
-
-@media (max-width: 840px) {
-    #pastSessionsList .sessionItemContainer .sessionInfo {
-        overflow: scroll;
     }
 }
