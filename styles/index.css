@@ -109,7 +109,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            overflow: scroll;
+            overflow-x: scroll;
+            scrollbar-width: thin;
 
             p {
                 white-space: nowrap;
