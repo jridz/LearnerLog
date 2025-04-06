@@ -87,6 +87,10 @@ export function showConfirmationDialog(message, callback) {
   callback(userConfirmed);
 }
 
+export function sanitize(input) {
+  return input.replace(/[\u00A0-\u9999<>&]/g, i => '&#' + i.charCodeAt(0) + ';')
+}
+
 export function getAllStoredSessions() {
   // Get the string of session data from localStorage
   const data = window.localStorage.getItem(STORAGE_KEY);

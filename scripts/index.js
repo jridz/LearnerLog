@@ -4,7 +4,8 @@ import {
   convertTo12HourFormat,
   convertToHoursMinutes,
   formatDate,
-  getAllStoredSessions
+  getAllStoredSessions,
+  sanitize
 } from "../app.js";
 
 const newSessionModal = document.getElementById("newSessionModal");
@@ -152,8 +153,8 @@ function openEditSessionModal(index) {
   editSessionDateInput.value = sessions[index].date;
   editSessionStartTimeInput.value = sessions[index].startTime;
   editSessionEndTimeInput.value = sessions[index].endTime;
-  editSessionStartLocationInput.value = sessions[index].startLocation;
-  editSessionEndLocationInput.value = sessions[index].endLocation;
+  editSessionStartLocationInput.value = sanitize(sessions[index].startLocation);
+  editSessionEndLocationInput.value = sanitize(sessions[index].endLocation);
 
   document.getElementById("editSessionModal").dataset.index = index;
   document.getElementById("editSessionModal").showModal()
