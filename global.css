@@ -215,6 +215,10 @@ dialog {
     }
 }
 
+.mobileOnly {
+    visibility: hidden;
+}
+
 /* Mobile */
 @media (max-width: 840px) {
     main {
@@ -249,5 +253,9 @@ dialog {
 
     #content {
         margin-bottom: 60px;
+    }
+
+    .mobileOnly {
+        visibility: visible;
     }
 }
