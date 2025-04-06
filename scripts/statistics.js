@@ -28,6 +28,12 @@ function renderAverageSessionLength() {
     total += session.duration;
   });
   const average = total / sessions.length;
+
+  if (isNaN(average)) {
+    averageSessionLength.innerText = "0 minutes";
+    return
+  }
+
   averageSessionLength.innerText = convertToHoursMinutes(average);
 }
 
@@ -49,6 +55,12 @@ function renderAverageSessionsPerDay() {
     days.add(session.date);
   });
   const average = sessions.length / days.size;
+  console.log(average)
+  if (isNaN(average)) {
+    averageSessionsPerDay.innerText = "0 sessions per day";
+    return
+  }
+
   averageSessionsPerDay.innerText = `${Math.round(average)} sessions per day`;
 }
 
